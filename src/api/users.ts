@@ -14,7 +14,11 @@ export const getUsers = async (query?: string, page = 1) => {
     try {
         const params: { [key: string]: string | number } = { page, limit: 10 };
         if (query) {
-            params.search = query;
+            if (query.includes('@')) {
+                params.email = query;
+            } else {
+                params.fullName = query;
+            }
         }
 
         const response = await httpClient.get<User[]>('/users', { params });
@@ -39,10 +43,7 @@ export const updateUserStatus = async (id: string, status: 'Activo' | 'Inactivo'
     return response.data;
 };
 
-export const deleteUser = async (id: string) => {
-    const response = await httpClient.put<User>(`/users/${id}`, { status: 'Inactivo' });
-    return response.data;
-};
+
 
 // **Lógica de Validación de Correo**
 // Verifica si un correo electrónico ya existe en la base de datos
