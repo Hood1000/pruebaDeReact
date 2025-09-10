@@ -35,7 +35,7 @@ const UserList: React.FC = () => {
         <div className="p-2">
             <Link
                 to="/"
-                className="text-blue-500 text-2xl hover:text-blue-700 hover:underline"
+                className="text-blue-600 text-4xl hover:text-blue-800 hover:underline"
             >
                 Inicio
             </Link>
@@ -49,7 +49,8 @@ const UserList: React.FC = () => {
                     type="text"
                     id="Busqueda"
                     placeholder="Buscar por nombre o correo..."
-                    className="p-2 border border-gray-300 rounded w-full md:w-1/2"
+                    className="p-2  rounded w-full md:w-1/2
+                    border-2 border-gray-900  placeholder-gray-700 bg-white"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -80,7 +81,7 @@ const UserList: React.FC = () => {
                                 <th className="py-2 px-4 border-b">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='text-center'>
                             {users?.map((user: User) => (
                                 <tr
                                     key={user.id}
@@ -101,13 +102,13 @@ const UserList: React.FC = () => {
                                     <td className="py-2 px-4 flex space-x-2">
                                         <Link
                                             to={`/users/edit/${user.id}`}
-                                            className="bg-yellow-500 text-white px-3 py-1 rounded-md text-sm hover:bg-yellow-600"
+                                            className="bg-yellow-500 text-white px-3 py-1 rounded-md text-sm hover:bg-yellow-600 mx-auto "
                                         >
                                             Editar
                                         </Link>
                                         <button
                                             onClick={() => handleToggleStatus(user.id, user.status)}
-                                            className={`text-gray-600 hover:text-gray-900 transition ${isToggling && togglingId === user.id ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                            className={`text-gray-600 hover:text-gray-900 transition mx-auto ${isToggling && togglingId === user.id ? 'opacity-50 cursor-not-allowed' : ''}`}
                                             disabled={isToggling && togglingId === user.id}
                                             aria-label={user.status === 'Activo' ? `Desactivar a ${user.fullName}` : `Activar a ${user.fullName}`}
                                         >
